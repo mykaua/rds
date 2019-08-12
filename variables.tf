@@ -7,35 +7,20 @@ variable "aws-profile" {
   type    = "string"
 }
 
-variable "rds_name" {
-  default = "hello_world"
-}
-
-variable "allocated_storage" {
-  default = 20
-}
-
-variable "storage_type" {
-  default = "gp2"
-}
-
-variable "engine" {
-  default = "postgres"
-}
-
-
-variable "engine_version" {
-  default = "10.6"
-}
-
-variable "instance_class" {
-  default = "db.t2.micro"
-}
-
-variable "username" {
-  default = "hello"
-}
-
-variable "password" {
-  default = "epam_hello"
+variable "rds" {
+  type = list(object({
+    rds_name = string
+    vpc_tag_name = string
+    subnet-tag-service = string
+    allocated_storage = number
+    storage_type = string
+    engine = string
+    engine_version = string
+    instance_class = string
+    username = string
+    password = string
+    storage_encrypted = bool
+    multi_az = bool
+    }))
+  default = []
 }
